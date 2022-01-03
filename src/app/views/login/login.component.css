@@ -1,4 +1,12 @@
 button {
     display: flex;
-    
+}
+
+.stuff {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    padding-top: 15px;
 }
