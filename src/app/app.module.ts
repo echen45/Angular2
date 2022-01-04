@@ -14,6 +14,8 @@ import { PostComponent } from './components/post/post.component';
 import { LikebuttonComponent } from './components/likebutton/likebutton.component';
 import { LikecounterComponent } from './components/likecounter/likecounter.component';
 import { TextboxComponent } from './components/textbox/textbox.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { LandingPageLoginComponent } from './views/landing-page-login/landing-page-login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TextboxComponent } from './components/textbox/textbox.component';
     PostComponent,
     LikebuttonComponent,
     LikecounterComponent,
-    TextboxComponent
+    TextboxComponent,
+    ProfileComponent,
+    LandingPageLoginComponent
   ],
   imports: [
     BrowserModule,

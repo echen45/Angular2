@@ -1,3 +1,32 @@
-.color {
+.navbar{
     background-color: #094664;
 }
+
+
+
+.navbar-brand{
+
+   color: white;
+
+}
+
+#profile-button{
+    color: white;
+}
+
+#home-button{
+    color: white;
+}
+
+.navbar-brand:hover {
+    
+    color: gray;
+}
+
+#profile-button:hover {
+   color: gray;
+}
+
+#home-button:hover {
+    color: gray;
+ }
