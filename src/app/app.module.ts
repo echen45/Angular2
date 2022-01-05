@@ -12,8 +12,9 @@ import { PostComponent } from './components/post/post.component';
 import { LikebuttonComponent } from './components/likebutton/likebutton.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { LandingPageLoginComponent } from './views/landing-page-login/landing-page-login.component';
-import { CommentComponent } from './components/comment/comment.component';
-import { SignupComponent } from './views/signup/signup.component';
+import { LoginboxComponent } from './components/loginbox/loginbox.component';
+import { ProfileboxComponent } from './profilebox/profilebox.component';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +26,8 @@ import { SignupComponent } from './views/signup/signup.component';
     LikebuttonComponent,
     ProfileComponent,
     LandingPageLoginComponent,
-    CommentComponent,
-    SignupComponent
+    LoginboxComponent,
+    ProfileboxComponent
   ],
   imports: [
     BrowserModule,

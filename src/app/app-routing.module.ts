@@ -7,7 +7,8 @@ import { ProfileComponent } from './views/profile/profile.component';
 const routes: Routes = [
   /* {path: 'createuser', component: LoginComponent}, */
   {path: "profile", component: ProfileComponent},
-  {path: "", component: LandingPageLoginComponent}
+  {path: "", component: LandingPageLoginComponent},
+  /* {path: "main", component: MainComponent} */
 ];
 
 @NgModule({
