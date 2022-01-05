@@ -1,0 +1,14 @@
+.profile-container{
+    
+   
+    
+    width: fit-content;
+    
+    margin-top: 50px;
+
+    background-color: rgb(141, 172, 172);
+   
+    
+    justify-content: left;
+    align-items: center;
+}

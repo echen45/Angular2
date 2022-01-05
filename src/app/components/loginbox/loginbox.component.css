@@ -1,0 +1,47 @@
+.form-label{
+    
+    font-size: large;
+
+
+}
+
+.mb-3{
+    flex: auto;
+    width: 400px;
+    
+}
+
+.login-container{
+    display: flex;
+    width: auto;
+    margin-top: 200px;
+   
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box{
+    background-color: rgb(194, 194, 194);
+    border-radius: 10px;
+    box-shadow: rgb(88, 88, 88) 5px 5px;
+
+}
+
+.inputs{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#submit-button{
+
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
+
+.login-links{
+
+    margin-left: 10px;
+}
