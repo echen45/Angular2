@@ -14,6 +14,7 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { LandingPageLoginComponent } from './views/landing-page-login/landing-page-login.component';
 import { LoginboxComponent } from './components/loginbox/loginbox.component';
 import { ProfileboxComponent } from './profilebox/profilebox.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ProfileboxComponent } from './profilebox/profilebox.component';
     ProfileComponent,
     LandingPageLoginComponent,
     LoginboxComponent,
-    ProfileboxComponent
+    ProfileboxComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
