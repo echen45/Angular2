@@ -15,6 +15,7 @@ import { LandingPageLoginComponent } from './views/landing-page-login/landing-pa
 import { LoginboxComponent } from './components/loginbox/loginbox.component';
 import { ProfileboxComponent } from './profilebox/profilebox.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { SignupComponent } from './views/signup/signup.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CommentComponent } from './components/comment/comment.component';
     LandingPageLoginComponent,
     LoginboxComponent,
     ProfileboxComponent,
-    CommentComponent
+    CommentComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

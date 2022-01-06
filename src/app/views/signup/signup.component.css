@@ -10,3 +10,15 @@ button {
 form {
     padding-top: 15px;
 }
+
+.stuff2 {
+    margin: 5px;
+}
+
+.stuff3 {
+    border: solid black 1px;
+    background-color: aliceblue;
+    border-radius:5px;
+    box-shadow: 5px 5px 5px 1px grey;
+    margin-top:5px;
+}
