@@ -1,4 +1,3 @@
-import * as internal from "stream";
 import { Post } from "./Post";
 
 export interface User{
@@ -9,6 +8,7 @@ export interface User{
     email: string;
     profilePic: string;
     password: string;
+    confirm: string;
     likedPosts: Array<Post>;
 
 }

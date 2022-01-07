@@ -1,20 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  pokeName: string = "feraligatr"
+  domain: string = "http://localhost:4200"
 
   constructor(private httpCli: HttpClient) { }
 
-  /* getOnePokemon(){
-    return this.httpCli.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${this.pokeName}`);
-  }
-
-  getAllPokemon(){
-    return this.httpCli.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=1181`);
+  /* registerAccount(user: User){
+    return this.httpCli.post<any>(`${this.domain}/users`, {
+      "username": user.userName,
+      "password": user.password,
+      "firstname": user.firstName,
+      "lastname": user.lastName
+    });
   } */
+
+  registerAccount(user:User) {
+    var formData: any = new FormData();
+    formData.append('email', user.email);
+    formData.append('username', user.userName);
+    formData.append('password', user.password);
+    formData.append('firstname', user.firstName);
+    formData.append('lastname', user.lastName);
+    formData.append('confirm', user.confirm);
+    return this.httpCli.post<any>(`${this.domain}/users`, formData);
+  }
+  
 }
