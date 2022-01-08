@@ -1,20 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  pokeName: string = "feraligatr"
+
+  domain: string = "http://localhost:9000"
+
+  
 
   constructor(private httpCli: HttpClient) { }
 
-  /* getOnePokemon(){
-    return this.httpCli.get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${this.pokeName}`);
+  login(user: User ){
+    return this.httpCli.post<any>(`${this.domain}/session`, {
+      "userName": user.userName,
+      "password": user.password
+    }, {withCredentials: true});
   }
 
-  getAllPokemon(){
-    return this.httpCli.get<any>(`https://pokeapi.co/api/v2/pokemon?limit=1181`);
-  } */
+  logout(){
+    return this.httpCli.delete<any>(`${this.domain}/session`, {withCredentials: true});
+  }
+
+  checkSession(){
+    return this.httpCli.get<any>(`${this.domain}/session`, {withCredentials: true});
+  }
+
+  
 }

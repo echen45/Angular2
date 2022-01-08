@@ -22,9 +22,11 @@
 }
 
 .login-box{
+    width: 250px;
     background-color: rgb(194, 194, 194);
     border-radius: 10px;
     box-shadow: rgb(88, 88, 88) 5px 5px;
+    max-width: 250px;
 
 }
 
@@ -43,5 +45,11 @@
 
 .login-links{
 
+    margin-left: 10px;
+}
+
+.err-message{
+    color: red;
+    text-transform: capitalize;
     margin-left: 10px;
 }
