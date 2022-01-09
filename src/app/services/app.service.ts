@@ -31,7 +31,7 @@ export class AppService {
   }
 
 
-  domain: string = "http://localhost:4200"
+  domain: string = "http://localhost:9000"
 
   
 
@@ -52,7 +52,7 @@ export class AppService {
     formData.append('firstname', user.firstName);
     formData.append('lastname', user.lastName);
     formData.append('confirm', user.confirm);
-    return this.httpCli.post<any>(`${this.domain}/users`, formData);
+    return this.httpCli.post<any>(`${this.domain}/user`, formData);
   }
 
   
