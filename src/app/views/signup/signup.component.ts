@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
 
 registerAccount(){
   this.appServ.registerAccount(this.user).subscribe({next: responseBody => {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/main"]);
   }, 
   error: badRequest => {
     this.message = badRequest.error.message;

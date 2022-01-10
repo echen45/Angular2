@@ -5,14 +5,15 @@ button {
 .stuff {
     display: flex;
     justify-content: center;
+    /* border: solid green 1px; */
 }
 
 form {
-    padding-top: 15px;
 }
 
 .stuff2 {
     margin: 5px;
+    /* border:solid blue 1px; */
 }
 
 .stuff3 {
@@ -20,5 +21,5 @@ form {
     background-color: aliceblue;
     border-radius:5px;
     box-shadow: 5px 5px 5px 1px grey;
-    margin-top:5px;
+    margin-top:100px;
 }

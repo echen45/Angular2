@@ -33,25 +33,15 @@ export class AppService {
 
   domain: string = "http://localhost:9000"
 
-  
-
-  /* registerAccount(user: User){
-    return this.httpCli.post<any>(`${this.domain}/users`, {
-      "username": user.userName,
-      "password": user.password,
-      "firstname": user.firstName,
-      "lastname": user.lastName
-    });
-  } */
-
   registerAccount(user:User) {
     var formData: any = new FormData();
     formData.append('email', user.email);
-    formData.append('username', user.userName);
+    formData.append('userName', user.userName);
     formData.append('password', user.password);
-    formData.append('firstname', user.firstName);
-    formData.append('lastname', user.lastName);
+    formData.append('firstName', user.firstName);
+    formData.append('lastName', user.lastName);
     formData.append('confirm', user.confirm);
+    //formData.append('profilePic', user.profilePic);
     return this.httpCli.post<any>(`${this.domain}/user`, formData);
   }
 
