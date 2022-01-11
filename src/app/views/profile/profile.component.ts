@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AppService } from 'src/app/services/app.service';
 
@@ -9,7 +10,7 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private apiServ: AppService) { }
+  constructor(private apiServ: AppService, private router: Router) { }
 
   
 
@@ -19,11 +20,22 @@ export class ProfileComponent implements OnInit {
     this.apiServ.checkSession().subscribe(responseBody => {
       console.log(responseBody);
       if(responseBody.data){
-        this.user = responseBody.data;
+        this.user = responseBody.data; 
+        console.log(this.user)
+      }else{
+        this.router.navigate(["/"])
 
-        
       }
     })
   }
+
+  
+   updateUser(): void{
+    this.apiServ.updateUser(this.user).subscribe({next:responseBody =>{
+      window.location.reload()
+      console.log(responseBody)
+
+    }})
+  }  
 
 }

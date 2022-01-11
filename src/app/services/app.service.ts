@@ -45,5 +45,27 @@ export class AppService {
     return this.httpCli.post<any>(`${this.domain}/user`, formData);
   }
 
+  updateUser(user:User) {
+    var formData: any = new FormData();
+    formData.append('userName', user.userName);
+    formData.append('email', user.email);
+   
+    formData.append('password', user.password);
+    formData.append('firstName', user.firstName);
+    formData.append('lastName', user.lastName);
+    formData.append('id', user.id);
+   
+    return this.httpCli.put<any>(`${this.domain}/user`, formData);
+  }
+
+  sendEmail(user:User){
+    return this.httpCli.patch<any>(`${this.domain}/user`, {
+      "userName": user.userName
+    })
+
+  }
+
+
+
   
 }
