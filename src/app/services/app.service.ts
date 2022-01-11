@@ -54,6 +54,7 @@ export class AppService {
     formData.append('firstName', user.firstName);
     formData.append('lastName', user.lastName);
     formData.append('id', user.id);
+    formData.append('profilePic', user.profilePic);
    
     return this.httpCli.put<any>(`${this.domain}/user`, formData);
   }
