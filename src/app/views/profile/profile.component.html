@@ -61,6 +61,39 @@
     </div>
 </div>
 
+<button type="button" class="btn btn-dark" (click)="getAllPostsForAUser()">Log All Posts for this user</button>
+
 
 <app-profilebox></app-profilebox>
-<app-post></app-post>
+<!-- <app-post></app-post> -->
+
+
+<div *ngFor="let post of posts"  [id]="post.id" > 
+<div id="div2">
+<div id="div1">
+<div id ="div4">
+<div id="div3">
+<picture>
+    <source srcset="..." type="image/svg+xml">
+    <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
+    <!--  https://hello-s3-ec.s3.us-east-2.amazonaws.com/david-goldman-ur9iHMV-7ug-unsplash.jpg -->
+  </picture>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">{{post.author.firstName}}  {{post.author.lastName}}</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Your Post Here">{{post.message}}</textarea>
+  </div>
+</div>
+  <div class="buttons">
+      <div id="div5">
+          <div id="div6">
+  <!-- <button type="button" class="btn" id="b2"> -->
+    Likes <span class="badge bg-secondary">4</span>
+  <!--  </button> -->
+</div>
+</div>
+  <button type="button" class="btn btn-primary" id="b1">Like</button>
+</div>
+</div>
+</div>
+</div>
+</div>

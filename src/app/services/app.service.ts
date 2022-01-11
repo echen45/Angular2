@@ -66,6 +66,10 @@ export class AppService {
 
   }
 
+  getAllPostsForAUser(user:User){
+    return this.httpCli.get<any>(`${this.domain}/post/${user.id}/all-original-user`)
+  }
+
 
 
   
