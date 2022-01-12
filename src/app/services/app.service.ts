@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
 import { Post } from '../models/Post';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class AppService {
 
 
   backendDomain: string = "http://localhost:9000"
+
+  public imgInput: FileList = <FileList> {}
 
   
 
@@ -55,16 +58,28 @@ export class AppService {
   getAllPosts(){
     return this.httpCli.get<any>(`${this.domain}/post`);
   }
+  handleFileInput(event :any){
+
+    this.imgInput = event.target.files;
+
+  }
+
   updateUser(user:User) {
+
+    
     var formData: any = new FormData();
     formData.append('userName', user.userName);
     formData.append('email', user.email);
-   
+   let file: File = this.imgInput[0];
     formData.append('password', user.password);
     formData.append('firstName', user.firstName);
     formData.append('lastName', user.lastName);
     formData.append('id', user.id);
-    formData.append('file', user.profilePic);
+    formData.append('file', file);
+
+    console.log(formData)
+
+    console.log(user)
    
     return this.httpCli.put<any>(`${this.domain}/user`, formData);
   }
