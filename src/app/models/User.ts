@@ -11,5 +11,6 @@ export interface User{
     password: string;
     confirm: string;
     likedPosts: Array<Post>;
+    uploadedPic: File;
 
 }
