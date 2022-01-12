@@ -39,4 +39,11 @@ export class LoginboxComponent implements OnInit {
     }})
   }
 
+  sendEmail(){
+    this.apiServ.sendEmail(this.user).subscribe(responseBody =>{
+      console.log(responseBody)
+    })
+
+  }
+
 }

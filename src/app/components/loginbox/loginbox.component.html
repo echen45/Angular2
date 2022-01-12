@@ -1,5 +1,23 @@
 <div class="login-container">
 
+  <div class="modal" tabindex="-1" id="updatePasswordModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Enter Username and an email will be sent to the coresponding email address</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" [(ngModel)]="user.userName">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="sendEmail()">Send email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="login-box">
     <form (submit)="loginUser()">
       <input type="text" class="inputs" id="username-input" placeholder="Username" name="username" [(ngModel)]="user.userName">
@@ -12,13 +30,18 @@
       </div>
 
       <!-- need to make this pull up a model and enter in email -->
-      <a [routerLink]="['/create']" class="login-links">Forgot Password</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updatePasswordModal" id="forgot-password-button">
+        Forgot Password
+      </button>
+      
       <br>
-      <a [routerLink]="['/create']"class="login-links">Register</a>
+      <button type="submit" class="btn btn-primary" id="register-button" [routerLink]="['/create']" >Register</button>
         
        <br>
-        <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+       <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
       </form>
     </div>
 
    </div>
+
+   

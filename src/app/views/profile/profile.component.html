@@ -1,54 +1,101 @@
 <app-navbar></app-navbar>
+
 <div class="button-container">
 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateInfoModal">Update Info</button>
 </div>
-<div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div  class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Update Info</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form (submit)="updateUser()">
         <div class="modal-body">
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Username</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="updatedUsername">
+                <span class="input-group-text" id="basic-addon1">*Username</span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="userName" [(ngModel)]="user.userName">
               </div>
+
+              
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">*email</span>
+                <input type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1" name="updatedemail" [(ngModel)]="user.email">
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">*First Name</span>
+                <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" name="firstName" [(ngModel)]="user.firstName">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">*Last Name</span>
+                <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" name="updatedLastName" [(ngModel)]="user.lastName">
+              </div>
+
+              <h6>If the following fields are left empty, they will not be changed</h6>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Password</span>
-                <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" name="updatedPassword">
-              </div>
-
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">email</span>
-                <input type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1" name="updatedemail">
-              </div>
-
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">First Name</span>
-                <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" name="updatedFirstName">
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Last Name</span>
-                <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" name="updatedLastName">
+                <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" name="updatedPassword" [(ngModel)]="user.password">
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Profile Picture</span>
-                <input type="file" class="form-control"  aria-describedby="basic-addon1" name="updatedProfilePic">
+                <input type="file" class="form-control"  aria-describedby="basic-addon1" name="updatedProfilePic" [(ngModel)]="user.profilePic">
               </div>
+
+              <h6>*Required Field</h6>
               
               
               
         </div>
+      
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Save changes</button>
         </div>
+      </form>
       </div>
     </div>
-  </div>
+</div>
+
+
+
 
 <app-profilebox></app-profilebox>
-<app-post></app-post>
+<!-- <app-post></app-post> -->
+
+
+<div *ngFor="let post of posts"  [id]="post.id" > 
+<div id="div2">
+<div id="div1">
+<div id ="div4">
+<div id="div3">
+<div>
+    
+    <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
+    <!--  https://hello-s3-ec.s3.us-east-2.amazonaws.com/david-goldman-ur9iHMV-7ug-unsplash.jpg -->
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">{{post.author.firstName}}  {{post.author.lastName}}</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Your Post Here">{{post.message}}</textarea>
+    <img src="{{post.picture}}" class="post-picture">
+  
+  </div>
+</div>
+  <div class="buttons">
+      <div id="div5">
+          <div id="div6">
+  <!-- <button type="button" class="btn" id="b2"> -->
+    Likes <span class="badge bg-secondary">4</span>
+  <!--  </button> -->
+</div>
+</div>
+  <button type="button" class="btn btn-primary" id="b1">Like</button>
+</div>
+</div>
+</div>
+</div>
+</div>

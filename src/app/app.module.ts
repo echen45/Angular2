@@ -16,6 +16,7 @@ import { LoginboxComponent } from './components/loginbox/loginbox.component';
 import { ProfileboxComponent } from './profilebox/profilebox.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SignupComponent } from './views/signup/signup.component';
+import { ForgotpasswordmodalComponent } from './components/forgotpasswordmodal/forgotpasswordmodal.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SignupComponent } from './views/signup/signup.component';
     LoginboxComponent,
     ProfileboxComponent,
     CommentComponent,
-    SignupComponent
+    SignupComponent,
+    ForgotpasswordmodalComponent
   ],
   imports: [
     BrowserModule,
