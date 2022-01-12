@@ -3,6 +3,7 @@ import { AppService } from 'src/app/services/app.service';
 import { Router } from '@angular/router';
 import { Post } from '../../models/Post';
 import { User } from '../../models/User';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
@@ -13,7 +14,13 @@ export class MainComponent implements OnInit {
   user: User = <User>{};
   posts: Array<Post> = [];
 
-  constructor(private appServ: AppService, private router: Router) { }
+  post: Post = <Post>{};
+
+  domain: string = "http://localhost:9000"
+
+  public imgInput: FileList = <FileList> {}
+
+  constructor(private appServ: AppService, private router: Router, private httpCli: HttpClient) { }
 
   ngOnInit(): void {
     this.appServ.checkSession().subscribe(responseBody => {
@@ -30,5 +37,24 @@ export class MainComponent implements OnInit {
         this.posts = responseBody.data;
         this.posts.sort((a,b) => a.id - b.id);
     })
+  }
+
+  handleFileInput(event :any){
+
+    this.imgInput = event.target.files;
+
+  }
+
+  createPost(): void{
+    let file: File = this.imgInput[0];
+    var formData: FormData = new FormData();
+    formData.append("message", this.post.message);
+    formData.append('file', file);
+    formData.append("author", JSON.stringify(this.user.id));
+
+
+    this.httpCli.post<any>(`${this.domain}/post`, formData).subscribe();
+
+    console.log("post has been sent")
   }
 }
