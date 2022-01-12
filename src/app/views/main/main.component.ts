@@ -10,6 +10,8 @@ import { User } from '../../models/User';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  posted: boolean = false;
+  post: Post = <Post>{};
   user: User = <User>{};
   posts: Array<Post> = [];
 
@@ -21,7 +23,9 @@ export class MainComponent implements OnInit {
       if(responseBody.data){
         this.user = responseBody.data;  
         this.getAllPosts();
-      }
+      }/* else{
+        this.router.navigate(["/"])
+      } */
     })
   }
   getAllPosts(){
@@ -31,4 +35,33 @@ export class MainComponent implements OnInit {
         this.posts.sort((a,b) => a.id - b.id);
     })
   }
+
+  createPost(){
+    this.appServ.createPost(this.post).subscribe(responseBody => {
+      this.post = responseBody;
+      console.log(this.post); 
+    })
+  }
+
+  likepost(){
+    this.appServ.likePost(this.post).subscribe(responseBody => {
+      this.post = responseBody;
+      console.log(this.post); 
+    })
+  }
+
+  deletepost(){
+    this.appServ.deletePost(this.post).subscribe(responseBody => {
+      this.post = responseBody;
+      console.log(this.post); 
+    })
+  }
+
+  comment(){
+    this.appServ.comment(this.post).subscribe(responseBody => {
+      this.post = responseBody;
+      console.log(this.post); 
+    })
+  }
+  
 }

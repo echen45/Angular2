@@ -58,6 +58,7 @@ export class AppService {
   getAllPosts(){
     return this.httpCli.get<any>(`${this.domain}/post`);
   }
+
   handleFileInput(event :any){
 
     this.imgInput = event.target.files;
@@ -95,7 +96,18 @@ export class AppService {
     return this.httpCli.get<any>(`${this.domain}/post/${user.id}/all-original-user`)
   }
 
+likePost(){
+return this.httpCli.get<any>(`${this.domain}/post`);
+}
 
+deletePost(){
+  return this.httpCli.delete<any>(`${this.domain}/post/${post.id}`);
+}
 
+comment(){
+  var formData: any = new FormData();
+    formData.append('email', post.message);
+    return this.httpCli.post<any>(`${this.domain}/post`, formData);
+}
   
 }
