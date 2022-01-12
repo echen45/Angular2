@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
+import { Post } from '../models/Post';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,14 @@ export class AppService {
     return this.httpCli.post<any>(`${this.domain}/user`, formData);
   }
 
+  createPost(post:Post) {
+    var formData: any = new FormData();
+    formData.append('email', post.message);
+    return this.httpCli.post<any>(`${this.domain}/post`, formData);
+  }
+
+  getAllPosts(){
+    return this.httpCli.get<any>(`${this.domain}/post`);
+  }
   
 }

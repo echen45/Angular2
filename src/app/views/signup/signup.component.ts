@@ -28,18 +28,4 @@ registerAccount(){
     this.message = badRequest.error.message;
   }});
 }
-
-
-/*
-  let body = new FormData();
-body.append('email', 'emailId');
-body.append('password', 'xyz');
-
-
-  this.http.post('http://localhost:4000/api/create-user', formData).subscribe(
-    (response) => console.log(response),
-    (error) => console.log(error)
-  )
-} */
-
 }

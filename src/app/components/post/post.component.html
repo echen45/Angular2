@@ -1,15 +1,18 @@
 <div id="div2">
 <div id="div1">
 <div id ="div4">
+<form (submit)="createPost()">
 <div id="div3">
 <picture>
     <source srcset="..." type="image/svg+xml">
-    <img src="https://images.unsplash.com/photo-1641510365307-5a7bdecfb695?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid img-thumbnail" alt="...">
+    <img src="" class="img-fluid img-thumbnail" alt="...">
+    <!-- https://images.unsplash.com/photo-1641510365307-5a7bdecfb695?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60 -->
    <!--  https://hello-s3-ec.s3.us-east-2.amazonaws.com/david-goldman-ur9iHMV-7ug-unsplash.jpg -->
   </picture>
 <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Name</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Your Post Here"></textarea>
+    <textarea *ngIf="posted" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Your Post Here" [(ngModel)]="post.message"></textarea>
+    <textarea *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
   </div>
 </div>
   <div class="buttons">
@@ -20,8 +23,12 @@
  <!--  </button> -->
 </div>
 </div>
-  <button type="button" class="btn btn-primary" id="b1">Like</button>
+  <button *ngIf="!posted" type="button" class="btn btn-primary" id="b1">Like</button>
+  <button *ngIf="posted" type="button" class="btn btn-primary" id="b2">Post</button>
+  <button *ngIf="!posted" type="button" class="btn btn-danger" id="b3">Delete</button>
+  <button *ngIf="!posted" type="button" class="btn btn-success" id="b4">Comment</button>
 </div>
+</form>
 </div>
 </div>
 </div>
