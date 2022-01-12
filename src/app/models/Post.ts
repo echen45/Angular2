@@ -8,5 +8,7 @@ export interface Post{
     likes: number;
     author: User;
     originalPost: Post;
+    liked: boolean;
+    comments: Array<Post>;
 
 }
