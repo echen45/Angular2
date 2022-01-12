@@ -56,7 +56,7 @@ export class AppService {
   }
 
   getAllPosts(){
-    return this.httpCli.get<any>(`${this.domain}/post`);
+    return this.httpCli.get<any>(`${this.domain}/post/all-original`);
   }
 
   handleFileInput(event :any){
@@ -96,9 +96,7 @@ export class AppService {
     return this.httpCli.get<any>(`${this.domain}/post/${user.id}/all-original-user`)
   }
 
-likePost(){
-return this.httpCli.get<any>(`${this.domain}/post`);
-}
+
 
 /* deletePost(){
   return this.httpCli.delete<any>(`${this.domain}/post/${post.id}`);

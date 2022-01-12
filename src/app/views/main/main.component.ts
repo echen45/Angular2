@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Post } from '../../models/Post';
 import { User } from '../../models/User';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -15,6 +16,7 @@ export class MainComponent implements OnInit {
   post: Post = <Post>{};
   user: User = <User>{};
   posts: Array<Post> = [];
+  postId: number = 0;
 
   domain: string = "http://localhost:9000"
 
@@ -36,8 +38,37 @@ export class MainComponent implements OnInit {
   getAllPosts(){
     this.appServ.getAllPosts().subscribe(responseBody => {
         console.log(responseBody);
-        this.posts = responseBody.data;
-        this.posts.sort((a,b) => a.id - b.id);
+        this.posts = responseBody;
+        
+
+        this.posts.forEach( post => {
+          if (this.user.likes.some(likedPost => post.id == likedPost.id)){
+              post.liked = true;
+          }else{
+            post.liked = false;
+          }
+
+         if(this.post.comments){
+            this.post.comments.forEach( element =>{
+            if (this.user.likes.some(likedComent => element.id == likedComent.id)){
+              element.liked = true;
+          }else{
+            element.liked = false;
+          }
+
+          })}
+
+    
+            
+          
+        });
+
+        console.log(this.posts)
+
+        
+
+        this.posts.sort((a,b) => b.id - a.id);
+        
     })
   }
 
@@ -48,26 +79,30 @@ export class MainComponent implements OnInit {
     })
   }*/
 
-  likepost(){
-    this.appServ.likePost(this.post).subscribe(responseBody => {
+  /* likepost(){
+    this.appServ.likePost().subscribe(responseBody => {
       this.post = responseBody;
-      console.log(this.post); 
-    })
-  }
+      /* console.log(this.post); */ 
+   /*  })
+  } */ 
 
-  deletepost(){
+  likePost(postId: number){
+    this.httpCli.patch<any>(`${this.domain}/user/${this.user.id}/post/${postId}`,null).subscribe();
+    }
+
+  /* deletepost(){
     this.appServ.deletePost(this.post).subscribe(responseBody => {
       this.post = responseBody;
       console.log(this.post); 
     })
-  }
+  } */
 
-  comment(){
+  /* comment(){
     this.appServ.comment(this.post).subscribe(responseBody => {
       this.post = responseBody;
       console.log(this.post); 
     })
-  } */
+  }  */
   
   handleFileInput(event :any){
 
@@ -86,5 +121,33 @@ export class MainComponent implements OnInit {
     this.httpCli.post<any>(`${this.domain}/post`, formData).subscribe();
 
     console.log("post has been sent")
+
+    window.location.reload();
   }
+
+  comment(): void{
+    console.log(this.post.id)
+    let file: File = this.imgInput[0];
+    var formData: FormData = new FormData();
+    formData.append("message", this.post.message);
+    formData.append('file', file);
+    formData.append("author", JSON.stringify(this.user.id));
+    formData.append("originalPostId", JSON.stringify(this.postId));
+    
+
+
+    this.httpCli.post<any>(`${this.domain}/post`, formData).subscribe();
+
+    console.log("post has been sent")
+
+    window.location.reload();
+  }
+
+  setId(id: number){
+
+    this.postId = id;
+
+  }
+
+  
 }

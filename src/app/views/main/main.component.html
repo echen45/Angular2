@@ -1,37 +1,21 @@
 <app-navbar></app-navbar>
 <!-- <app-post ></app-post> -->
 <!-- <app-post *ngFor="let post of posts"></app-post> -->
-<!-- <div>
-    <div id="div2">
-    <div id="div1">
-    <div id ="div4">
-    <form (submit)="createPost()">
-    <div id="div3">
-    <div id="picdiv">
-        <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
-      </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">{{post.author.firstName}}  {{post.author.lastName}}</label>
-        <textarea *ngIf="!posted" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Your Post Here"></textarea>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Profile Picture</span>
-            <input type="file" class="form-control"  aria-describedby="basic-addon1" name="profilePic" [(ngModel)]="post.picture">
-          </div>
-      </div>
-    </div>
-      <div class="buttons">
-          <div *ngIf="posted" id="div5">
-              <div id="div6">
-        Likes <span class="badge bg-secondary">4</span>
-    </div>
-    </div>
-      <button *ngIf="!posted" type="submit" class="btn btn-primary" id="b2">Post</button>
-    </div>
-    </form>
-    </div>
-    </div>
-    </div>
-    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#createPostModal" >Create Post</button>
 <div  class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,8 +46,37 @@
       </div>
     </div>
 </div>
-<app-post ></app-post>
-<app-post ></app-post>
+<!-- <app-post ></app-post>
+<app-post ></app-post> -->
+
+<div  class="modal fade" id="createCommentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div >
+      <div class="modal-body">
+          <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Message</span>
+              <input type="text" class="form-control" placeholder="Type Your Message Here" aria-label="Username" aria-describedby="basic-addon1" name="postMessage" [(ngModel)]="post.message">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Add Picture</span>
+              <input type="file" class="form-control"  aria-describedby="basic-addon1" name="updatedProfilePic" (change)="handleFileInput($event)">
+            </div>              
+      </div>
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="comment()">Save Comment</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -71,34 +84,61 @@
     <div id="div2">
     <div id="div1">
     <div id ="div4">
-    <form (submit)="createPost()">
+    <div >
     <div id="div3">
     <div id="picdiv">
         <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
       </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">{{post.author.firstName}}  {{post.author.lastName}}</label>
-        <textarea *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+        <textarea disabled *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3">{{post.message}}</textarea>
         <img src="{{post.picture}}" class="post-picture">
       </div>
     </div>
       <div class="buttons">
           <div *ngIf="!posted" id="div5">
               <div id="div6">
-        Likes <span class="badge bg-secondary">4</span>
+        Likes <span class="badge bg-secondary">{{post.likes}}</span>
     </div>
     </div>
-      <button *ngIf="!posted" type="button" class="btn btn-primary" id="b1" (click)="likepost()">Like</button>
-      <button *ngIf="!posted" type="button" class="btn btn-danger" id="b3" (click)="deletepost()">Delete</button>
-      <button *ngIf="!posted" type="button" class="btn btn-success" id="b4" (click)="comment()">Comment</button>
+      <button *ngIf="!post.liked" type="button" class="btn btn-primary btn-like" id="like-button-{{post.id}}" (click)="likePost(post.id)">Like</button>
+      <button *ngIf="post.liked" type="button" class="btn btn-primary btn-like" id="like-button-clicked-{{post.id}}" >Post Liked</button>
+      
+      <button type="button" data-bs-toggle="modal" data-bs-target="#createCommentModal" class="btn btn-success" id="{{post.id}}" (click)="setId(post.id)" >Comment</button>
     </div>
-    </form>
+      <div *ngFor="let comment of post.comments" class="comment">
+        <div id="div2">
+          <div id="div1">
+          <div id ="div4">
+          <div >
+          <div id="div3">
+          <div id="picdiv">
+              <img src="{{comment.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
+            </div>
+          <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">{{comment.author.firstName}}  {{comment.author.lastName}}</label>
+              <textarea disabled *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3">{{comment.message}}</textarea>
+              <img src="{{comment.picture}}" class="post-picture">
+            </div>
+          </div>
+            <div class="buttons">
+                <div *ngIf="!posted" id="div5">
+                    <div id="div6">
+              <!-- Likes <span class="badge bg-secondary">{{comment.likes}}</span> -->
+          </div>
+          </div>
+            <!-- <button *ngIf="!comment.liked" type="button" class="btn btn-primary btn-like" id="like-button-{{comment.id}}" (click)="likePost(comment.id)">Like</button>
+            <button *ngIf="comment.liked" type="button" class="btn btn-primary btn-like" id="like-button-clicked-{{comment.id}}" >Post Liked</button> -->
+
+      </div>
+
+  </div>
     </div>
     </div>
     </div>
     </div>
 
-    <div *ngFor="let post of posts"  [id]="post.id">
+   <!--  <div *ngFor="let post of posts"  [id]="post.id">
         <div id="div2">
         <div id="div1">
         <div id ="div4">
@@ -126,4 +166,4 @@
         </div>
         </div>
         </div>
-        </div> 
+        </div>  -->

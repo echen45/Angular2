@@ -10,7 +10,7 @@ export interface User{
     profilePic: string;
     password: string;
     confirm: string;
-    likedPosts: Array<Post>;
+    likes: Array<Post>;
     uploadedPic: File;
 
 }

@@ -76,6 +76,7 @@ export class ProfileComponent implements OnInit {
   getAllPostsForAUser(): void {
     this.apiServ.getAllPostsForAUser(this.user).subscribe(responseBody => {
       this.posts = responseBody
+      this.posts.sort((a,b) => b.id - a.id);
       console.log(this.posts)
 
     })
