@@ -60,6 +60,8 @@ export class ProfileComponent implements OnInit {
 
    
     this.httpCli.put<FormData>(`${this.domain}/user`, formData).subscribe();
+
+    window.location.reload();
   }
 
   

@@ -100,7 +100,7 @@ likePost(){
 return this.httpCli.get<any>(`${this.domain}/post`);
 }
 
-deletePost(){
+/* deletePost(){
   return this.httpCli.delete<any>(`${this.domain}/post/${post.id}`);
 }
 
@@ -108,6 +108,6 @@ comment(){
   var formData: any = new FormData();
     formData.append('email', post.message);
     return this.httpCli.post<any>(`${this.domain}/post`, formData);
-}
+} */
   
 }

@@ -3,6 +3,7 @@ import { AppService } from 'src/app/services/app.service';
 import { Router } from '@angular/router';
 import { Post } from '../../models/Post';
 import { User } from '../../models/User';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +16,11 @@ export class MainComponent implements OnInit {
   user: User = <User>{};
   posts: Array<Post> = [];
 
-  constructor(private appServ: AppService, private router: Router) { }
+  domain: string = "http://localhost:9000"
+
+  public imgInput: FileList = <FileList> {}
+
+  constructor(private appServ: AppService, private router: Router, private httpCli: HttpClient) { }
 
   ngOnInit(): void {
     this.appServ.checkSession().subscribe(responseBody => {
@@ -36,12 +41,12 @@ export class MainComponent implements OnInit {
     })
   }
 
-  createPost(){
+  /* createPost(){
     this.appServ.createPost(this.post).subscribe(responseBody => {
       this.post = responseBody;
       console.log(this.post); 
     })
-  }
+  }*/
 
   likepost(){
     this.appServ.likePost(this.post).subscribe(responseBody => {
@@ -62,6 +67,24 @@ export class MainComponent implements OnInit {
       this.post = responseBody;
       console.log(this.post); 
     })
-  }
+  } */
   
+  handleFileInput(event :any){
+
+    this.imgInput = event.target.files;
+
+  }
+
+  createPost(): void{
+    let file: File = this.imgInput[0];
+    var formData: FormData = new FormData();
+    formData.append("message", this.post.message);
+    formData.append('file', file);
+    formData.append("author", JSON.stringify(this.user.id));
+
+
+    this.httpCli.post<any>(`${this.domain}/post`, formData).subscribe();
+
+    console.log("post has been sent")
+  }
 }
