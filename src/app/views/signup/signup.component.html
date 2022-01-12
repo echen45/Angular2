@@ -2,7 +2,7 @@
 <div class="stuff">
 <div class="stuff3">
 <div class="stuff2">
-    <form (submit)="registerAccount()">
+    <div>
         <div class="mb-3">
           <h4>Register</h4>
           <input type="email" class="form-control" placeholder="Email Address" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" [(ngModel)]="user.email">
@@ -25,10 +25,10 @@
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Profile Picture</span>
-            <input type="file" class="form-control"  aria-describedby="basic-addon1" name="profilePic" [(ngModel)]="user.profilePic">
+            <input type="file" class="form-control"  aria-describedby="basic-addon1" name="profilePic"  (change)="handleFileInput($event)">
           </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <button type="button" class="btn btn-primary"(click)="registerAccount2()">Submit</button>
+    </div>
 </div>
 </div>
 </div>
