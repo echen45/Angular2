@@ -73,13 +73,13 @@
 <div id="div1">
 <div id ="div4">
 <div id="div3">
-<div>
+<div  id="picdiv">
     
     <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
     <!--  https://hello-s3-ec.s3.us-east-2.amazonaws.com/david-goldman-ur9iHMV-7ug-unsplash.jpg -->
 </div>
 <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">{{post.author.firstName}}  {{post.author.lastName}}</label>
+    <label for="exampleFormControlTextarea1" class="name-on-post">{{post.author.firstName}}  {{post.author.lastName}}</label>
     <textarea disabled class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write Your Post Here">{{post.message}}</textarea>
     <img src="{{post.picture}}" class="post-picture">
   

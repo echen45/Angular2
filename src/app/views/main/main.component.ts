@@ -24,6 +24,8 @@ export class MainComponent implements OnInit {
   fullList: Array<Post> = [];
   showPageButtons: Boolean = false;
 
+  isLoggedin: boolean = true;
+
   domain: string = "http://localhost:9000"
 
   public imgInput: FileList = <FileList> {}
@@ -48,9 +50,9 @@ export class MainComponent implements OnInit {
         this.appServ.userProfile = responseBody.data;
         this.getAllPosts(); //Gets the list of all paginated posts page 1, size 20
         
-      }/* else{
+      }else{
         this.router.navigate(["/"])
-      } */
+      }
     })
 
     
