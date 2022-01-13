@@ -28,19 +28,19 @@
         <div >
         <div class="modal-body">
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Message</span>
+                <span class="input-group-text" id="create-post-message">Message</span>
                 <input type="text" class="form-control" placeholder="Type Your Message Here" aria-label="Username" aria-describedby="basic-addon1" name="postMessage" [(ngModel)]="post.message">
               </div>
 
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Add Picture</span>
+                <span class="input-group-text" id="create-post-picture">Add Picture</span>
                 <input type="file" class="form-control"  aria-describedby="basic-addon1" name="updatedProfilePic" (change)="handleFileInput($event)">
               </div>              
         </div>
       
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createPost()">Save changes</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createPost()">Create Post</button>
         </div>
       </div>
       </div>
@@ -104,7 +104,7 @@
       <button *ngIf="!post.liked" type="button" class="btn btn-primary btn-like" id="like-button-{{post.id}}" (click)="likePost(post.id)">Like</button>
       <button *ngIf="post.liked" type="button" class="btn btn-primary btn-like" id="like-button-clicked-{{post.id}}" >Post Liked</button>
       
-      <button type="button" data-bs-toggle="modal" data-bs-target="#createCommentModal" class="btn btn-success" id="{{post.id}}" (click)="setId(post.id)" >Comment</button>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#createCommentModal" class="btn btn-success" id="comment-button-{{post.id}}" (click)="setId(post.id)" >Comment</button>
     </div>
       <div *ngFor="let comment of post.comments" class="comment">
         <div id="div2">

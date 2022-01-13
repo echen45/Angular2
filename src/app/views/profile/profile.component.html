@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div *ngIf="isLoggedInUser()" class="button-container">
-<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateInfoModal">Update Info</button>
+<button type="button" class="btn btn-warning" id="update-info-button" data-bs-toggle="modal" data-bs-target="#updateInfoModal">Update Info</button>
 </div>
 
 <div  class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -14,30 +14,30 @@
         <div >
         <div class="modal-body">
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">*Username</span>
+                <span class="input-group-text" id="username-update">*Username</span>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="userName" [(ngModel)]="user.userName">
               </div>
 
               
 
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">*email</span>
+                <span class="input-group-text" id="email-update">*email</span>
                 <input type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1" name="updatedemail" [(ngModel)]="user.email">
               </div>
 
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">*First Name</span>
+                <span class="input-group-text" id="first-update">*First Name</span>
                 <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1" name="firstName" [(ngModel)]="user.firstName">
               </div>
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">*Last Name</span>
+                <span class="input-group-text" id="last-update">*Last Name</span>
                 <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1" name="updatedLastName" [(ngModel)]="user.lastName">
               </div>
 
               <h6>If the following fields are left empty, they will not be changed</h6>
 
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Password</span>
+                <span class="input-group-text" id="password-update">Password</span>
                 <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" name="updatedPassword" [(ngModel)]="user.password">
               </div>
 
