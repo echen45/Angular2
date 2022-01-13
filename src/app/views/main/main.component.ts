@@ -5,6 +5,7 @@ import { Post } from '../../models/Post';
 import { User } from '../../models/User';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Component({
   selector: 'app-main',
@@ -17,6 +18,11 @@ export class MainComponent implements OnInit {
   user: User = <User>{};
   posts: Array<Post> = [];
   postId: number = 0;
+  page: number = 999999;
+  numPages: number = 1;
+  totalPosts: number = 0;
+  fullList: Array<Post> = [];
+  showPageButtons: Boolean = false;
 
   domain: string = "http://localhost:9000"
 
@@ -25,21 +31,45 @@ export class MainComponent implements OnInit {
   constructor(private appServ: AppService, private router: Router, private httpCli: HttpClient) { }
 
   ngOnInit(): void {
+    this.httpCli.get<any>(`${this.domain}/post/all-original`).subscribe(responseBody1 =>{
+          this.fullList = responseBody1;
+          this.totalPosts = this.fullList.length;
+          this.numPages = (this.totalPosts / 20);
+          this.numPages = Math.ceil(this.numPages) - 1;
+          console.log(this.showPageButtons);
+          this.appServ.storeUserSessionDTO();
+        }
+          );
+
     this.appServ.checkSession().subscribe(responseBody => {
       console.log(responseBody);
       if(responseBody.data){
         this.user = responseBody.data;  
-        this.getAllPosts();
+        this.appServ.userProfile = responseBody.data;
+        this.getAllPosts(); //Gets the list of all paginated posts page 1, size 20
+        
       }/* else{
         this.router.navigate(["/"])
       } */
     })
+
+    
   }
+
+  ngDoCheck(){
+    console.log("from ng do check")
+    if(this.numPages > 0){
+      this.showPageButtons = true;
+    }
+    console.log(this.numPages);
+    console.log(this.showPageButtons);
+  }
+
   getAllPosts(){
     this.appServ.getAllPosts().subscribe(responseBody => {
         console.log(responseBody);
         this.posts = responseBody;
-        
+        this.page = 1;
 
         this.posts.forEach( post => {
           if (this.user.likes.some(likedPost => post.id == likedPost.id)){
@@ -58,14 +88,10 @@ export class MainComponent implements OnInit {
 
           })}
 
-    
-            
           
         });
 
         console.log(this.posts)
-
-        
 
         this.posts.sort((a,b) => b.id - a.id);
         
@@ -149,5 +175,80 @@ export class MainComponent implements OnInit {
 
   }
 
+  navigateToFirst(){
+    this.httpCli.get<any>(`${this.domain}/post/paged/0/20`).subscribe(responseBody => {
+      console.log(responseBody);
+      this.posts = responseBody;
+      this.page = 0;
+      console.log("first Page")
+      console.log(this.page)
+      this.posts.sort((a,b) => b.id - a.id);
+    }
+    
+    );
+  }
+
+  navigateToPrevious(){
+    if(this.page - 1 < 0){
+      this.page = 0;
+    }else{
+      this.page = this.page - 1;
+    }
+
+
+    this.httpCli.get<any>(`${this.domain}/post/paged/${this.page}/20`).subscribe(responseBody => {
+      console.log(responseBody);
+      this.posts = responseBody;
+      console.log("previous Page")
+      console.log(this.page)
+      this.posts.sort((a,b) => b.id - a.id);
+    }
+    );
+
+  }
+
+  navigateToNext(){
+      
+      if(this.page + 1 <= this.numPages){
+        this.page = this.page + 1;
+      }else{
+        this.page = this.numPages;
+      }
+   
+
+    this.httpCli.get<any>(`${this.domain}/post/paged/${this.page}/20`).subscribe(responseBody => {
+      console.log(responseBody);
+      this.posts = responseBody;
+      console.log("next Page")
+      console.log(this.page)
+      this.posts.sort((a,b) => b.id - a.id);
+    }
+    );
+  }
+
+  navigateToLast(){
+    this.httpCli.get<any>(`${this.domain}/post/paged/${this.numPages}/20`).subscribe(responseBody => {
+      console.log(responseBody);
+      this.posts = responseBody;
+      this.page = this.numPages;
+      console.log("last Page")
+      console.log(this.page)
+      this.posts.sort((a,b) => b.id - a.id);
+    }
+    );
+  }
   
+  navigateToProfile(userId:number){
+    this.httpCli.get<any>(`${this.domain}/user/${userId}`).subscribe(responseBody =>{
+      this.appServ.userProfile = responseBody;
+      console.log("response body from navigate to profile")
+      console.log(responseBody);
+      console.log(this.appServ.userProfile);
+      this.router.navigate(["/profile"]);
+    }
+      );
+      console.log("user id: " + userId)
+      console.log(this.appServ.userProfile);
+      //this.router.navigate(["/profile"]);
+  }
 }

@@ -23,7 +23,20 @@ export class ProfileComponent implements OnInit {
   public imgInput: FileList = <FileList> {}
 
   ngOnInit(): void {
-    this.apiServ.checkSession().subscribe(responseBody => {
+    
+    console.log("api.userprofile");
+    console.log(this.user);
+
+    
+    
+    if(this.apiServ.userProfile.id){
+      this.user = this.apiServ.userProfile;
+      this.getAllPostsForAUser();
+      console.log("truthy value")
+      
+    
+    }else{
+      this.apiServ.checkSession().subscribe(responseBody => {
       console.log(responseBody);
       if(responseBody.data){
         this.user = responseBody.data; 
@@ -33,9 +46,13 @@ export class ProfileComponent implements OnInit {
         this.router.navigate(["/"])
 
       }
+
     })
+    }
+  }
 
-
+  isLoggedInUser():Boolean{
+    return this.apiServ.loggedInUserProfile.id == this.apiServ.userProfile.id;
   }
 
   handleFileInput(event :any){
@@ -74,12 +91,21 @@ export class ProfileComponent implements OnInit {
   }  
 
   getAllPostsForAUser(): void {
-    this.apiServ.getAllPostsForAUser(this.user).subscribe(responseBody => {
+    console.log("profile user");
+    console.log(this.user);
+    this.httpCli.get<any>(`${this.domain}/post/${this.user.id}/all-original-user`).subscribe(responseBody => {
       this.posts = responseBody
       this.posts.sort((a,b) => b.id - a.id);
       console.log(this.posts)
 
     })
+
+    /* this.apiServ.getAllPostsForAUser(this.user).subscribe(responseBody => {
+      this.posts = responseBody
+      this.posts.sort((a,b) => b.id - a.id);
+      console.log(this.posts)
+
+    }) */
   }
 
 }

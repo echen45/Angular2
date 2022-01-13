@@ -15,9 +15,18 @@ export class AppService {
 
   public imgInput: FileList = <FileList> {}
 
-  
+  public userProfile: User = <User>{};
+  public loggedInUserProfile: User = <User>{};
 
   constructor(private httpCli: HttpClient) { }
+
+  storeUserSessionDTO(){
+    this.checkSession().subscribe(responseBody => {
+      this.loggedInUserProfile = responseBody.data;
+      console.log("api user profile store")
+      console.log(this.userProfile);
+    })
+  }
 
   login(user: User ){
     return this.httpCli.post<any>(`${this.backendDomain}/session`, {
@@ -56,7 +65,7 @@ export class AppService {
   }
 
   getAllPosts(){
-    return this.httpCli.get<any>(`${this.domain}/post/all-original`);
+    return this.httpCli.get<any>(`${this.domain}/post/paged/0/20`);
   }
 
   handleFileInput(event :any){

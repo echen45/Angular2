@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="button-container">
+<div *ngIf="isLoggedInUser()" class="button-container">
 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateInfoModal">Update Info</button>
 </div>
 

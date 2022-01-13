@@ -79,7 +79,7 @@
 </div>
 
 
-
+<div>
 <div *ngFor="let post of posts"  [id]="post.id">
     <div id="div2">
     <div id="div1">
@@ -90,7 +90,7 @@
         <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="...">
       </div>
     <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">{{post.author.firstName}}  {{post.author.lastName}}</label>
+        <a for="exampleFormControlTextarea1" class="form-label" (click)="navigateToProfile(post.author.id)">{{post.author.firstName}}  {{post.author.lastName}}</a>
         <textarea disabled *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3">{{post.message}}</textarea>
         <img src="{{post.picture}}" class="post-picture">
       </div>
@@ -167,3 +167,17 @@
         </div>
         </div>
         </div>  -->
+        </div>
+    </div>
+  
+  </div>
+</div>
+</div>
+<div *ngIf="showPageButtons">
+  <span >
+    <button (click)="navigateToFirst()">First</button>
+    <button (click)="navigateToPrevious()">Previous</button>
+    <button (click)="navigateToNext()">Next</button>
+    <button (click)="navigateToLast()">Last</button>
+  </span>
+</div>

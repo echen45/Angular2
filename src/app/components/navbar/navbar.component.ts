@@ -18,6 +18,20 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  async storeUser(){
+
+    this.apiServ.checkSession().subscribe(responseBody => {
+      this.apiServ.userProfile = responseBody.data;
+      console.log("api user profile store in navbar")
+      console.log(this.apiServ.userProfile);
+    })
+    this.router.navigate(["/profile"])
+    /* await this.apiServ.storeUserSessionDTO();
+    console.log("store user method in navbar")
+    console.log(this.apiServ.userProfile);
+    this.router.navigate(["/profile"]) */
+  }
+
   logout(){
     this.apiServ.logout().subscribe(responseBody => {
       console.log(responseBody)
