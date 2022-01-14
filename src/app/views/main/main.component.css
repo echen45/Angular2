@@ -56,16 +56,21 @@ display: flex;
 }
 
 .post-picture{
+    margin-top: 5px;
     max-width: 100%;
     width: 100%;
 }
 
 .name-on-post{
     
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     color: black;
     margin-left: 10px;
+}
+
+.added-picture-div{
+    width: 100%;
 }
 
 

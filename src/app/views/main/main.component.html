@@ -17,7 +17,7 @@
 
 
 
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#createPostModal" >Create Post</button>
+<button type="button" class="btn btn-info" data-bs-toggle="modal" id="click-me" data-bs-target="#createPostModal" >Create Post</button>
 <div  class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -40,7 +40,7 @@
       
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createPost()">Create Post</button>
+          <button type="button" id="create-post-in-modal" class="btn btn-primary" data-bs-dismiss="modal" (click)="createPost()">Create Post</button>
         </div>
       </div>
       </div>
@@ -89,9 +89,9 @@
     <div id="picdiv">
         <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="..." (click)="navigateToProfile(post.author.id)">
       </div>
-    <div class="added picture div">
+    <div class="added-picture-div">
         <a for="exampleFormControlTextarea1" class="name-on-post" id="name-with=post{{post.id}}" (click)="navigateToProfile(post.author.id)">{{post.author.firstName}}  {{post.author.lastName}}</a>
-        <textarea disabled *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3">{{post.message}}</textarea>
+        <div disabled *ngIf="!posted" class="form-control" id="post{{post.id}}-message" rows="3">{{post.message}}</div>
         <img  src="{{post.picture}}" class="post-picture">
       </div>
     </div>
