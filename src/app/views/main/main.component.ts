@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
   fullList: Array<Post> = [];
   showPageButtons: Boolean = false;
 
-  domain: string = "http://localhost:9000"
+  domain: string = "http://3.21.168.108/:9000"
 
   public imgInput: FileList = <FileList> {}
 

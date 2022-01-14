@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async storeUser(){
+  storeUser(){
 
     this.apiServ.checkSession().subscribe(responseBody => {
       this.apiServ.userProfile = responseBody.data;
