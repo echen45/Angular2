@@ -24,13 +24,10 @@ export class MainComponent implements OnInit {
   fullList: Array<Post> = [];
   showPageButtons: Boolean = false;
 
-<<<<<<< HEAD
-  domain: string = "http://3.21.168.108/:9000"
-=======
-  isLoggedin: boolean = true;
 
-  domain: string = "http://localhost:9000"
->>>>>>> d705a06df7cbc00fa29bec0a53e6553ba0741148
+  domain: string = "http://3.21.168.108/:9000"
+
+  isLoggedin: boolean = true;
 
   public imgInput: FileList = <FileList> {}
 

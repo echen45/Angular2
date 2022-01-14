@@ -87,20 +87,14 @@
     <div >
     <div id="div3">
     <div id="picdiv">
-<<<<<<< HEAD
-        <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="..." >
-=======
+
         <img src="{{post.author.profilePic}}" class="img-fluid img-thumbnail" alt="..." (click)="navigateToProfile(post.author.id)">
->>>>>>> d705a06df7cbc00fa29bec0a53e6553ba0741148
       </div>
     <div class="added picture div">
         <a for="exampleFormControlTextarea1" class="name-on-post" id="name-with=post{{post.id}}" (click)="navigateToProfile(post.author.id)">{{post.author.firstName}}  {{post.author.lastName}}</a>
         <textarea disabled *ngIf="!posted" class="form-control" id="exampleFormControlTextarea2" rows="3">{{post.message}}</textarea>
-<<<<<<< HEAD
         <img src="{{post.picture}}" class="post-picture" >
-=======
-        <img  src="{{post.picture}}" class="post-picture">
->>>>>>> d705a06df7cbc00fa29bec0a53e6553ba0741148
+
       </div>
     </div>
       <div class="buttons">
