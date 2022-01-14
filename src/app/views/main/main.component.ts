@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
   showPageButtons: Boolean = false;
 
 
-  domain: string = "http://3.21.168.108/:9000"
+  domain: string = "http://3.21.168.108:9000"
 
   isLoggedin: boolean = true;
 

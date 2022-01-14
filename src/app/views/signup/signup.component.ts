@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
 
   public imgInput: FileList = <FileList> {}
 
-  domain: string = "http://3.21.168.108/:9000";
+  domain: string = "http://3.21.168.108:9000";
 
   constructor(private appServ: AppService, private router: Router, private httpCli: HttpClient) { }
 

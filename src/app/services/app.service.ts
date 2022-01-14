@@ -11,7 +11,7 @@ export class AppService {
 
 
 
-  backendDomain: string = "http://3.21.168.108/:9000"
+  backendDomain: string = "http://3.21.168.108:9000"
 
   public imgInput: FileList = <FileList> {}
 
@@ -44,7 +44,7 @@ export class AppService {
   }
 
 
-  domain: string = "http://3.21.168.108/:9000"
+  domain: string = "http://3.21.168.108:9000"
 
   registerAccount(user:User) {
     var formData: any = new FormData();
