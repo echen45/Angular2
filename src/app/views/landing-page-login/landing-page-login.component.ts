@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-landing-page-login',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiServ: AppService) { }
+
+  isLoggedin: boolean = false;
 
   ngOnInit(): void {
-  }
+
+    this.isLoggedin = false;
+
+    console.log(this.isLoggedin)
+
+    
+  
 
 }
+
+}
+

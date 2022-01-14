@@ -13,7 +13,7 @@
           <a class="nav-link" id="profile-button"  (click)="storeUser()">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="profile-button" [routerLink]="['/create']">Register</a>
+          <a *ngIf="!isLoggedin" class="nav-link" id="profile-button" [routerLink]="['/create']">Register</a>
         </li>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,7 +31,7 @@
         </li> -->
       </ul>
      
-        <button  class="btn btn-outline-danger" type="button" (click)="logout()">Logout</button>
+        <button *ngIf="isLoggedin" class="btn btn-outline-danger" type="button" (click)="logout()">Logout</button>
       
     </div>
   </div>

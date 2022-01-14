@@ -3,6 +3,8 @@
    
     
     width: fit-content;
+
+    max-width: 30%;
     
     margin-top: 50px;
 
@@ -11,8 +13,19 @@
     
     justify-content: left;
     align-items: center;
+
+    border-radius: 10px;
+
+   
 }
 
 .full-name{
     text-transform: capitalize;
+}
+
+
+
+.profile-pic{
+    max-width: 100%;
+    max-height: 400px;
 }

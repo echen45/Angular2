@@ -3,21 +3,15 @@
     flex-direction: row-reverse;
 }
 
-#b1 {
 
-}
-
-#b2 {
-    
-}
 
 #div1 {
-    width:70%;
+    width:80%;
     margin-right: 10px;
     margin-bottom: 5px;
     margin-top: 10px;
     border: black solid 1px;
-    background-color: aqua;
+    background-color: rgb(0, 183, 255);
     border-radius:5px;
     box-shadow: 5px 5px 5px 1px grey;
 }
@@ -25,12 +19,13 @@
 #div2 {
     display: flex;
     flex-direction:row-reverse;
+    max-width: 80%;
     /* border: red solid 1px; */
 }
 
  #div3 {
 display: flex;
-justify-content:space-between;
+
 /* border: blue solid 1px; */
 } 
 
@@ -59,4 +54,21 @@ justify-content:space-between;
     justify-content: center;
     margin-left:5px;
 }
+
+.post-picture{
+    max-width: 100%;
+    width: 100%;
+}
+
+.name-on-post{
+    
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-left: 10px;
+}
+
+
+
+
 

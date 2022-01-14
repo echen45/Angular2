@@ -12,11 +12,26 @@ export class NavbarComponent implements OnInit {
 
   
   user: User = <User>{};
+  isLoggedin: boolean = true;
+  amIloggedin: User = <User>{};
   
 
   constructor(private apiServ: AppService, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.apiServ.checkSession().subscribe(checkLogin => {
+      this.amIloggedin = checkLogin.data;
+      if(this.amIloggedin){
+        this.isLoggedin = true;
+      }else{
+        this.isLoggedin = false;
+      }
+      
+    })
+    
+
+    this.isLoggedin = true;
+  }
 
   storeUser(){
 
