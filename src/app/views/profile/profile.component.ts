@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private apiServ: AppService, private router: Router, private httpCli: HttpClient) { }
 
-  domain: string = "http://localhost:9000";
+  domain: string = "http://3.21.168.108/:9000";
 
   user: User = <User>{};
 
